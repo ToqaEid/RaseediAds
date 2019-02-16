@@ -23,7 +23,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     }
 
     /**
-     * used by activity to initialize ui attributes
+     * Used by activity to initialize ui attributes
      * for example initializing recycler view and assigning adapter to it
      */
     protected void initView() {

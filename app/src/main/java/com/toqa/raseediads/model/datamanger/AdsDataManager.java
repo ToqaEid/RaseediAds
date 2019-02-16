@@ -21,18 +21,43 @@ import retrofit2.Response;
  */
 public class AdsDataManager {
 
+    /**
+     * Callbacks Interface for AdsDataManager of the results
+     */
     public interface AdsManagerCallbacks {
+        /**
+         * will be pass result on Success
+         *
+         * @param adList list passed in callback when success
+         */
         void onSuccess(List<Ad> adList);
 
+        /**
+         * will pass error on failure
+         *
+         * @param state determine the state of error whether general error like connection error
+         *              or response error like 404 from network.
+         * @param msg   error msg
+         */
         void onFailure(int state, String msg);
     }
 
     private Context context;
 
+    /**
+     * Solo constructor with 1 param
+     *
+     * @param context context in which AdsDataManager is created
+     */
     public AdsDataManager(Context context) {
         this.context = context;
     }
 
+    /**
+     * Method used to getAds
+     *
+     * @param callback AdManagetCallback that will carry the result
+     */
     public void getAds(AdsManagerCallbacks callback) {
         getNetworkAds(callback);
     }

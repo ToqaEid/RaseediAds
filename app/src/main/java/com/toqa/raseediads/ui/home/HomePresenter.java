@@ -10,11 +10,20 @@ public class HomePresenter extends BasePresenter<HomeView> implements AdsDataMan
 
     private AdsDataManager adsDataManager;
 
+    /**
+     * Constructor with 2 params
+     *
+     * @param homeView
+     * @param adsDataManager
+     */
     public HomePresenter(HomeView homeView, AdsDataManager adsDataManager) {
         super(homeView);
         this.adsDataManager = adsDataManager;
     }
 
+    /**
+     * Methods that gets ads from DataManager and handle the data
+     */
     public void getAds() {
         if (view != null) {
             view.showLoading();

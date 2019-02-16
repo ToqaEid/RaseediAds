@@ -22,13 +22,22 @@ import butterknife.ButterKnife;
  */
 public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> {
 
+    /**
+     * Single callback method interface listener on Ad item click action
+     */
     public interface AdClickListener {
         void onAdClick(Ad ad);
     }
 
+    /**
+     * List of Ad objects that will fill the recycle view
+     */
     private List<Ad> adList;
     private AdClickListener adClickListener;
 
+    /**
+     * Solo empty constructor
+     */
     public AdsAdapter() {
         adList = new ArrayList<>();
     }
@@ -56,13 +65,19 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> {
         return adList == null ? 0 : adList.size();
     }
 
-
+    /**
+     * Sets the adClickListener
+     *
+     * @param adClickListener the adClickListener to set
+     */
     public void setAdClickListener(AdClickListener adClickListener) {
         this.adClickListener = adClickListener;
     }
 
     /**
      * add new ads to existing adList
+     *
+     * @param ads elements to be appended to the list
      */
     public void addItems(List<Ad> ads) {
         this.adList.addAll(ads);

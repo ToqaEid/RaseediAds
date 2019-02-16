@@ -27,6 +27,12 @@ public class ServiceGenerator {
                     .baseUrl(APIHelper.API_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson));
 
+    /**
+     * General class that is used to create retrofit serviceClasses
+     *
+     * @param serviceClass
+     * @return T created serviceClass
+     */
     public static <T> T createService(Class<T> serviceClass) {
         if (BuildConfig.DEBUG) {
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

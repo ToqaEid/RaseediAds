@@ -59,13 +59,18 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeVie
         return R.layout.activity_home;
     }
 
-
+    /**
+     * Method for showing progressBar
+     */
     @Override
     public void showLoading() {
         hideLoading();
         progressBar.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Method for hiding progressBar
+     */
     @Override
     public void hideLoading() {
         if (progressBar != null) {
@@ -73,6 +78,11 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeVie
         }
     }
 
+    /**
+     * Method for filling data in the recyclerView
+     *
+     * @param adList list that will be sorted and added in the recyclerView
+     */
     @Override
     public void showAds(List<Ad> adList) {
         if (adList != null) {
@@ -83,12 +93,12 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeVie
     }
 
     /**
-     * show error according to @param state
-     * if state = STATE_FAILURE_RESPONSE_ERROR then :
-     * it will show OK button only tht will dismiss the error
-     * if state = STATE_FAILURE_GENERAL_ERROR then:
-     * 1- it will show OK button only tht will dismiss the error
-     * 2- it will show retry button that will call getAds method again
+     * Show error dialog according to @param state
+     *
+     * @param state int param indicator for the error state
+     *              STATE_FAILURE_GENERAL_ERROR :  General error for example No Internet Connection, SocketTimeoutConnection, etc.
+     *              STATE_FAILURE_RESPONSE_ERROR: Response error for example 404, 500, etc.
+     * @param msg   error message that will be displayed
      */
     @Override
     public void showError(int state, String msg) {
@@ -101,10 +111,13 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeVie
 
         switch (state) {
             case Utils.STATE_FAILURE_RESPONSE_ERROR:
+                //show OK button only that will dismiss the error
                 alertBuilder = UiUtils.initAlertDialog(HomeActivity.this, getString(R.string.error_title), msg,
                         0, positiveBtnListener, null);
                 break;
             case Utils.STATE_FAILURE_GENERAL_ERROR:
+                //1- show OK button only tht will dismiss the error
+                //2- retry button that will call getAds method again
                 DialogInterface.OnClickListener neutralBtnListener = (dialogInterface, i) -> {
                     presenter.getAds();
                     dialogInterface.cancel();
