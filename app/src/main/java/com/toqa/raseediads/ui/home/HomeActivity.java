@@ -75,11 +75,21 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeVie
 
     @Override
     public void showAds(List<Ad> adList) {
-        adsAdapter.clear();
-        Collections.sort(adList);
-        adsAdapter.addItems(adList);
+        if (adList != null) {
+            adsAdapter.clear();
+            Collections.sort(adList);
+            adsAdapter.addItems(adList);
+        }
     }
 
+    /**
+     * show error according to @param state
+     * if state = STATE_FAILURE_RESPONSE_ERROR then :
+     * it will show OK button only tht will dismiss the error
+     * if state = STATE_FAILURE_GENERAL_ERROR then:
+     * 1- it will show OK button only tht will dismiss the error
+     * 2- it will show retry button that will call getAds method again
+     */
     @Override
     public void showError(int state, String msg) {
 
@@ -92,16 +102,16 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeVie
         switch (state) {
             case Utils.STATE_FAILURE_RESPONSE_ERROR:
                 alertBuilder = UiUtils.initAlertDialog(HomeActivity.this, getString(R.string.error_title), msg,
-                                                                                        0, positiveBtnListener, null);
+                        0, positiveBtnListener, null);
                 break;
             case Utils.STATE_FAILURE_GENERAL_ERROR:
-            DialogInterface.OnClickListener neutralBtnListener = (dialogInterface, i) -> {
-                presenter.getAds();
-                dialogInterface.cancel();
-            };
-            alertBuilder = UiUtils.initAlertDialog(HomeActivity.this, getString(R.string.error_title), msg,
-                                                            R.string.retry, positiveBtnListener, neutralBtnListener);
-            break;
+                DialogInterface.OnClickListener neutralBtnListener = (dialogInterface, i) -> {
+                    presenter.getAds();
+                    dialogInterface.cancel();
+                };
+                alertBuilder = UiUtils.initAlertDialog(HomeActivity.this, getString(R.string.error_title), msg,
+                        R.string.retry, positiveBtnListener, neutralBtnListener);
+                break;
         }
         alertBuilder.show();
     }

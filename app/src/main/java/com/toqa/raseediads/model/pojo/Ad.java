@@ -58,13 +58,14 @@ public class Ad implements Comparable<Ad>, Parcelable {
         return (this.order - ad.order);
     }
 
-    public Ad(Parcel in){
+    public Ad(Parcel in) {
         this.picture = in.readString();
         this.title = in.readString();
         this.url = in.readString();
         this.order = in.readInt();
 
     }
+
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         public Ad createFromParcel(Parcel in) {
             return new Ad(in);
@@ -74,6 +75,7 @@ public class Ad implements Comparable<Ad>, Parcelable {
             return new Ad[size];
         }
     };
+
     @Override
     public int describeContents() {
         return 0;

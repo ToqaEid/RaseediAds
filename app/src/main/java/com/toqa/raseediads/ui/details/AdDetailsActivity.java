@@ -33,12 +33,12 @@ public class AdDetailsActivity extends BaseActivity<AdDetailsPresenter> implemen
     protected void initView() {
         super.initView();
 
-        final Ad ad =  getIntent().getParcelableExtra(Utils.EXTRA_AD);
+        final Ad ad = getIntent().getParcelableExtra(Utils.EXTRA_AD);
         if (ad != null) {
             draweeView_ad.setImageURI(ad.getPicture() == null ? "" : ad.getPicture());
             textView_title.setText(ad.getTitle());
             textView_url.setOnClickListener(view -> {
-                String url =  ad.getUrl();
+                String url = ad.getUrl();
                 if (!url.startsWith("http://") && !url.startsWith("https://")) {
                     url = "http://" + url;
                 }

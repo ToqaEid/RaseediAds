@@ -11,16 +11,17 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * ServiceGenerator class is used to create Retrofit Services
+ */
 public class ServiceGenerator {
 
+    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+    private static Retrofit retrofit;
+    private static HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
     private static Gson gson = new GsonBuilder()
             .setLenient()
             .create();
-    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
-    private static Retrofit retrofit;
-    private static HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(APIHelper.API_BASE_URL)

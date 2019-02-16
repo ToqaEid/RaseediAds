@@ -8,18 +8,23 @@ import com.toqa.raseediads.model.network.apis.AdService;
 import com.toqa.raseediads.model.pojo.Ad;
 import com.toqa.raseediads.utils.Utils;
 
-import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * AdsDataManager class is a class used to manage data
+ * and returned the final data to the presenter
+ * for example returning data whether from network or DB(if exists)
+ */
 public class AdsDataManager {
 
     public interface AdsManagerCallbacks {
         void onSuccess(List<Ad> adList);
-        public void onFailure(int state, String msg);
+
+        void onFailure(int state, String msg);
     }
 
     private Context context;

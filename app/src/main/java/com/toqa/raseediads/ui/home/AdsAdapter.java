@@ -17,9 +17,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * Adapter class for AdList RecyclerView
+ */
 public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> {
 
-    public interface AdClickListener{
+    public interface AdClickListener {
         void onAdClick(Ad ad);
     }
 
@@ -58,11 +61,17 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> {
         this.adClickListener = adClickListener;
     }
 
+    /**
+     * add new ads to existing adList
+     */
     public void addItems(List<Ad> ads) {
         this.adList.addAll(ads);
         notifyDataSetChanged();
     }
 
+    /**
+     * clear adList from its data
+     */
     public void clear() {
         final int size = adList.size();
         adList.clear();
@@ -82,8 +91,12 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> {
             ButterKnife.bind(this, itemView);
         }
 
+        /**
+         * method that fills the UI of recyclerView item with data
+         *
+         * @param ad is the data the will be filled in the UI
+         */
         public void fillData(Ad ad) {
-
             if (ad != null) {
                 drawee_ad.setImageURI(ad.getPicture() == null ? "" : ad.getPicture());
                 textView_title.setText(ad.getTitle());

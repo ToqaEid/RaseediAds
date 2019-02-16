@@ -15,7 +15,7 @@ public class HomePresenter extends BasePresenter<HomeView> implements AdsDataMan
         this.adsDataManager = adsDataManager;
     }
 
-    public void getAds(){
+    public void getAds() {
         if (view != null) {
             view.showLoading();
             adsDataManager.getAds(this);
@@ -28,7 +28,6 @@ public class HomePresenter extends BasePresenter<HomeView> implements AdsDataMan
             view.hideLoading();
             view.showAds(adList);
         }
-
     }
 
     @Override
